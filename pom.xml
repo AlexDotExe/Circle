@@ -17,6 +17,7 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<spring-cloud.version>Hoxton.SR8</spring-cloud.version>
+		<m2e.apt.activation>jdt_apt</m2e.apt.activation>
     <org.mapstruct.version>1.3.1.Final</org.mapstruct.version>
 </properties>
 	<dependencies>
@@ -60,6 +61,7 @@
             <artifactId>timeago</artifactId>
             <version>4.0.1</version>
         </dependency>
+        <!-- 
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib-jdk8</artifactId>
@@ -71,7 +73,7 @@
             <version>${kotlin.version}</version>
             <scope>test</scope>
         </dependency>
-
+-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
@@ -127,6 +129,7 @@
 	    	<groupId>org.springframework.boot</groupId>
 	    	<artifactId>spring-boot-starter-thymeleaf</artifactId>
 	    </dependency>
+
 	</dependencies>
 
 	<dependencyManagement>
@@ -149,7 +152,12 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
+			</plugin>
+			<plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+          <!-- or newer version -->
+            <configuration>
                 <source>1.8</source> <!-- depending on your project -->
                 <target>1.8</target> <!-- depending on your project -->
                 <annotationProcessorPaths>
@@ -160,7 +168,7 @@
                     </path>
                 </annotationProcessorPaths>
             </configuration>
-			</plugin>
+        </plugin>
 		</plugins>
 	</build>
 

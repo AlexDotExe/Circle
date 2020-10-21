@@ -13,7 +13,7 @@ import com.x.model.Subfeed;
 @Mapper(componentModel = "spring")
 public interface SubfeedMapper {
 
-    @Mapping(target = "numberOfPosts", expression = "java(mapPosts(subfeed.getPosts()))")
+    @Mapping(target = "postCount", expression = "java(mapPosts(subfeed.getPosts()))")
     SubfeedDto mapSubfeedToDto(Subfeed subfeed);
 
     default Integer mapPosts(List<Post> numberOfPosts) {
