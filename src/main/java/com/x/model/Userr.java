@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.TableGenerator;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -19,9 +20,9 @@ import java.time.Instant;
 @NoArgsConstructor
 @Entity
 public class Userr {
-    @Id
+	@Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "uid_Sequence")
-    @SequenceGenerator(name = "uid_Sequence", sequenceName = "UID_SEQ")
+    @SequenceGenerator(name = "uid_Sequence", sequenceName = "UID_SEQ",allocationSize = 1)
     private Long userId;
     @NotBlank(message = "Username is required")
     private String username;

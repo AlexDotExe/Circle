@@ -1,9 +1,9 @@
 package com.x.dto;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 @Data
 @AllArgsConstructor
@@ -15,4 +15,9 @@ public class PostResponse {
     private String description;
     private String userName;
     private String subfeedName;
+    private Integer voteCount;
+    private Integer commentCount;
+    private String duration;
+    private boolean upVote;
+    private boolean downVote;
 }

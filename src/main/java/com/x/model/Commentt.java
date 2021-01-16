@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.TableGenerator;
 import javax.validation.constraints.NotEmpty;
 
 import lombok.AllArgsConstructor;
@@ -26,7 +27,7 @@ import lombok.NoArgsConstructor;
 public class Commentt {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "cid_Sequence")
-    @SequenceGenerator(name = "cid_Sequence", sequenceName = "CID_SEQ")
+    @SequenceGenerator(name = "cid_Sequence", sequenceName = "CID_SEQ",allocationSize = 1)
     private Long id;
     @NotEmpty
     private String text;

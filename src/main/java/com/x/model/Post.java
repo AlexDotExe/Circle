@@ -18,9 +18,10 @@ import static javax.persistence.FetchType.LAZY;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Post {
+	
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "pid_Sequence")
-    @SequenceGenerator(name = "pid_Sequence", sequenceName = "PID_SEQ")
+    @SequenceGenerator(name = "pid_Sequence", sequenceName = "PID_SEQ", allocationSize = 1)
     private Long postId;
     @NotBlank(message = "Post Name cannot be empty or Null")
     private String postName;

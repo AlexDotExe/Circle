@@ -1,4 +1,6 @@
 package com.x.security;
+import static io.jsonwebtoken.Jwts.parser;
+import static java.util.Date.from;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,10 +11,12 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
-import static io.jsonwebtoken.Jwts.parser;
+import java.sql.Date;
+import java.time.Instant;
 
 import javax.annotation.PostConstruct;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
@@ -26,6 +30,8 @@ import io.jsonwebtoken.Jwts;
 public class JwtProvider {
 
     private KeyStore keyStore;
+    @Value("${jwt.expiration.time}")
+    private Long jwtExpirationInMillis;
 
     @PostConstruct
     public void init() {
@@ -34,16 +40,27 @@ public class JwtProvider {
             InputStream resourceAsStream = getClass().getResourceAsStream("/springblog.jks");
             keyStore.load(resourceAsStream, "password".toCharArray());
         } catch (KeyStoreException | CertificateException | NoSuchAlgorithmException | IOException e) {
-            throw new FeedbackException("Exception occurred while loading keystore //" + e.getMessage());
+            throw new FeedbackException("Exception occurred while loading keystore" + e.getMessage());
         }
 
     }
 
     public String generateToken(Authentication authentication) {
-        org.springframework.security.core.userdetails.User principal = (User) authentication.getPrincipal();
+        User principal = (User) authentication.getPrincipal();
         return Jwts.builder()
                 .setSubject(principal.getUsername())
+                .setIssuedAt(from(Instant.now()))
                 .signWith(getPrivateKey())
+                .setExpiration(Date.from(Instant.now().plusMillis(jwtExpirationInMillis)))
+                .compact();
+    }
+
+    public String generateTokenWithUserName(String username) {
+        return Jwts.builder()
+                .setSubject(username)
+                .setIssuedAt(from(Instant.now()))
+                .signWith(getPrivateKey())
+                .setExpiration(Date.from(Instant.now().plusMillis(jwtExpirationInMillis)))
                 .compact();
     }
 
@@ -51,27 +68,34 @@ public class JwtProvider {
         try {
             return (PrivateKey) keyStore.getKey("springblog", "password".toCharArray());
         } catch (KeyStoreException | NoSuchAlgorithmException | UnrecoverableKeyException e) {
-            throw new FeedbackException("Exception occured while retrieving public key from keystore");
-        }
-    }
-       public boolean validateToken(String jwt) {
-        parser().setSigningKey(getPublickey()).parseClaimsJws(jwt);
-        return true;
-    }
-         private PublicKey getPublickey() {
-        try {
-            return keyStore.getCertificate("springblog").getPublicKey();
-        } catch (KeyStoreException e) {
-            throw new FeedbackException("Exception occured while retrieving public key from keystore");
+            throw new FeedbackException("Exception occured while retrieving public key from keystore" + e.getMessage());
         }
     }
 
-    public String getUsernameFromJWT(String token) {
+    public boolean validateToken(String jwt) {
+        parser().setSigningKey(getPublickey()).parseClaimsJws(jwt);
+        return true;
+    }
+
+    private PublicKey getPublickey() {
+        try {
+            return keyStore.getCertificate("springblog").getPublicKey();
+        } catch (KeyStoreException e) {
+            throw new FeedbackException("Exception occured while " +
+                    "retrieving public key from keystore");
+        }
+    }
+
+    public String getUsernameFromJwt(String token) {
         Claims claims = parser()
                 .setSigningKey(getPublickey())
                 .parseClaimsJws(token)
                 .getBody();
 
         return claims.getSubject();
+    }
+
+    public Long getJwtExpirationInMillis() {
+        return jwtExpirationInMillis;
     }
 }

@@ -18,7 +18,7 @@ import static javax.persistence.FetchType.LAZY;
 public class Vote {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "vid_Sequence")
-    @SequenceGenerator(name = "vid_Sequence", sequenceName = "VID_SEQ")
+    @SequenceGenerator(name = "vid_Sequence", sequenceName = "VID_SEQ",allocationSize = 1)
     private Long voteId;
     private VoteType voteType;
     @NotNull

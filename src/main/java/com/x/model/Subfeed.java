@@ -20,7 +20,7 @@ import static javax.persistence.FetchType.LAZY;
 public class Subfeed {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "sfid_Sequence")
-    @SequenceGenerator(name = "sfid_Sequence", sequenceName = "SFID_SEQ")
+    @SequenceGenerator(name = "sfid_Sequence", sequenceName = "SFID_SEQ",allocationSize = 1)
     private Long id;
     @NotBlank(message = "Community name is required")
     private String name;

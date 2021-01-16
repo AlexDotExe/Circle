@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.x.dto.SubfeedDto;
-import com.x.security.SubfeedService;
+import com.x.service.SubfeedService;
 
 import lombok.AllArgsConstructor;
 

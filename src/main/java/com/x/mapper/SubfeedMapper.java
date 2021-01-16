@@ -9,6 +9,7 @@ import org.mapstruct.Mapping;
 import com.x.dto.SubfeedDto;
 import com.x.model.Post;
 import com.x.model.Subfeed;
+import com.x.model.Userr;
 
 @Mapper(componentModel = "spring")
 public interface SubfeedMapper {
@@ -22,5 +23,7 @@ public interface SubfeedMapper {
 
     @InheritInverseConfiguration
     @Mapping(target = "posts", ignore = true)
-    Subfeed mapDtoToSubfeed(SubfeedDto subfeed);
+    @Mapping(target = "createdDate", expression = "java(java.time.Instant.now())")
+    @Mapping(target = "userr", source = "user")
+    Subfeed mapDtoToSubfeed(SubfeedDto subfeed, Userr user);
 }

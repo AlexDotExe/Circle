@@ -16,10 +16,9 @@ import static javax.persistence.FetchType.LAZY;
 @Entity
 @Table(name = "token")
 public class VerificationToken {
-
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "tid_Sequence")
-    @SequenceGenerator(name = "tid_Sequence", sequenceName = "TID_SEQ")
+    @SequenceGenerator(name = "tid_Sequence", sequenceName = "TID_SEQ",allocationSize = 1)
     private Long id;
     private String token;
     @OneToOne(fetch = LAZY)

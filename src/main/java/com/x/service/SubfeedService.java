@@ -1,4 +1,4 @@
-package com.x.security;
+package com.x.service;
 
 
 import static java.util.stream.Collectors.toList;
@@ -24,10 +24,12 @@ public class SubfeedService {
 
     private final SubfeedRepository subfeedRepository;
     private final SubfeedMapper subfeedMapper;
+    private final AuthService authService;
 
     @Transactional
     public SubfeedDto save(SubfeedDto subfeedDto) {
-        Subfeed save = subfeedRepository.save(subfeedMapper.mapDtoToSubfeed(subfeedDto));
+    	if(subfeedRepository.findByName(subfeedDto.getName()) != null) {subfeedDto.setName("-1"); return subfeedDto;}
+        Subfeed save = subfeedRepository.save(subfeedMapper.mapDtoToSubfeed((subfeedDto), authService.getCurrentUser()));
         subfeedDto.setId(save.getId());
         return subfeedDto;
     }
