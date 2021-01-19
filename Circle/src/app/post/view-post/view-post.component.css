@@ -3,7 +3,9 @@
     font-weight: bold;
     opacity: 1;
   }
-  
+  p{
+    color: black !important;
+  }
   .post-title:hover {
     opacity: 0.6;
   }

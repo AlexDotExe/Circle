@@ -19,10 +19,8 @@ export class HeaderComponent implements OnInit {
     this.isLoggedIn = this.authService.isLoggedIn();
     this.username = this.authService.getUserName();
   }
-reload(username){
-  this.isLoggedIn = true;
-  this.username = username;
-  window.location.reload();
+check(){
+  console.log(this.username);
 }
   goToUserProfile() {
     this.router.navigateByUrl('/user-profile/' + this.username);
