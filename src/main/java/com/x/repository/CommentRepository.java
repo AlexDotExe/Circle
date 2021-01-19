@@ -9,7 +9,7 @@ import com.x.model.Post;
 import com.x.model.Userr;
 
 public interface CommentRepository extends JpaRepository<Commentt, Long> {
-    List<Commentt> findByPost(Post post);
+    List<Commentt> findByPostOrderByCreatedDateDesc(Post post);
 
     List<Commentt> findAllByUserr(Userr userr);
 }

@@ -44,15 +44,15 @@ public class CommentService {
                 .orElseThrow(() -> new CircleException(commentsDto.getPostId().toString()));
         Commentt comment = commentMapper.map(commentsDto, post, authService.getCurrentUser());
         commentRepository.save(comment);
-
-        String message = mailContentBuilder.build(post.getUserr().getUsername() + " posted a comment on your post." + POST_URL);
-        sendCommentNotification(message, post.getUserr());
+System.out.println("\n\n"+authService.getCurrentUser()+"\n\n");
+       // String message = mailContentBuilder.build(post.getUserr().getUsername() + " posted a comment on your post." + POST_URL);
+       // sendCommentNotification(message, post.getUserr());
     }
 
     public List<CommentsDto> getCommentByPost(Long postId) {
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new CircleException(postId.toString()));
-        return commentRepository.findByPost(post)
+        return commentRepository.findByPostOrderByCreatedDateDesc(post)
                 .stream()
                 .map(commentMapper::mapToDto)
                 .collect(toList());
