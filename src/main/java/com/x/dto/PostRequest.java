@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PostRequest {
     private Long postId;
-    private String subfeedName;
+    private String circleName;
     private String postName;
     private String url;
     private String description;

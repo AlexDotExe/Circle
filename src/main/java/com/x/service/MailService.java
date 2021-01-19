@@ -8,7 +8,7 @@ import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import com.x.exception.FeedbackException;
+import com.x.exception.CircleException;
 import com.x.model.NotificationEmail;
 
 import lombok.AllArgsConstructor;
@@ -26,7 +26,7 @@ class MailService {
     void sendMail(NotificationEmail notificationEmail) {
         MimeMessagePreparator messagePreparator = mimeMessage -> {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
-            messageHelper.setFrom("registration@feedback.com");
+            messageHelper.setFrom("circle11821@gmail.com");
             messageHelper.setTo(notificationEmail.getRecipient());
             messageHelper.setSubject(notificationEmail.getSubject());
             messageHelper.setText(mailContentBuilder.build(notificationEmail.getBody()));
@@ -35,7 +35,7 @@ class MailService {
             mailSender.send(messagePreparator);
             log.info("Activation email sent!!");
         } catch (MailException e) {
-            throw new FeedbackException("Exception occurred when sending mail to " + notificationEmail.getRecipient()+"//"+ e.getMessage());
+            throw new CircleException("Exception occurred when sending mail to " + notificationEmail.getRecipient()+"//"+ e.getMessage());
         }
     }
 

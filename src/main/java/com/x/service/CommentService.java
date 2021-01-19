@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.x.dto.CommentsDto;
-import com.x.exception.FeedbackException;
+import com.x.exception.CircleException;
 import com.x.mapper.CommentMapper;
 import com.x.model.Commentt;
 import com.x.model.NotificationEmail;
@@ -41,7 +41,7 @@ public class CommentService {
 
     public void createComment(CommentsDto commentsDto) {
         Post post = postRepository.findById(commentsDto.getPostId())
-                .orElseThrow(() -> new FeedbackException(commentsDto.getPostId().toString()));
+                .orElseThrow(() -> new CircleException(commentsDto.getPostId().toString()));
         Commentt comment = commentMapper.map(commentsDto, post, authService.getCurrentUser());
         commentRepository.save(comment);
 
@@ -51,7 +51,7 @@ public class CommentService {
 
     public List<CommentsDto> getCommentByPost(Long postId) {
         Post post = postRepository.findById(postId)
-                .orElseThrow(() -> new FeedbackException(postId.toString()));
+                .orElseThrow(() -> new CircleException(postId.toString()));
         return commentRepository.findByPost(post)
                 .stream()
                 .map(commentMapper::mapToDto)

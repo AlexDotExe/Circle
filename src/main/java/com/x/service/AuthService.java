@@ -19,7 +19,7 @@ import com.x.dto.AuthenticationResponse;
 import com.x.dto.LoginRequest;
 import com.x.dto.RefreshTokenRequest;
 import com.x.dto.RegisterRequest;
-import com.x.exception.FeedbackException;
+import com.x.exception.CircleException;
 import com.x.model.NotificationEmail;
 import com.x.model.Userr;
 import com.x.model.VerificationToken;
@@ -62,7 +62,7 @@ public class AuthService {
         user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
         user.setCreated(Instant.now());
         user.setEnabled(false);
-
+if(userRepository.findByEmail(user.getEmail()).isPresent()) throw new CircleException("User Already Exists");
         userRepository.save(user);
 
         String token = generateVerificationToken(user);
@@ -82,7 +82,7 @@ public class AuthService {
 
     private void fetchUserAndEnable(VerificationToken verificationToken) {
         String username = verificationToken.getUserr().getUsername();
-        Userr user = userRepository.findByUsername(username).orElseThrow(() -> new FeedbackException("User not found with name - " + username));
+        Userr user = userRepository.findByUsername(username).orElseThrow(() -> new CircleException("User not found with name - " + username));
         user.setEnabled(true);
         userRepository.save(user);
     }
@@ -99,7 +99,7 @@ public class AuthService {
 
     public void verifyAccount(String token) {
         Optional<VerificationToken> verificationToken = verificationTokenRepository.findByToken(token);
-        fetchUserAndEnable(verificationToken.orElseThrow(() -> new FeedbackException("Invalid Token")));
+        fetchUserAndEnable(verificationToken.orElseThrow(() -> new CircleException("Invalid Token")));
     }
 
     public AuthenticationResponse login(LoginRequest loginRequest) {

@@ -35,8 +35,7 @@ public class CommentsController {
 
     @GetMapping("/by-post/{postId}")
     public ResponseEntity<List<CommentsDto>> getAllCommentsForPost(@PathVariable("postId") Long postId) {
-        return status(OK)
-                .body(commentService.getCommentByPost(postId));
+    	return status(OK).body(commentService.getCommentByPost(postId));
     }
 
     @GetMapping("/by-user/{userName}")

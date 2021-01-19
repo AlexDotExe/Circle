@@ -1,0 +1,11 @@
+<div class="sidebar-view-circle">
+    <div style="color: black; font-weight: bold">Browse Circles</div>
+    <hr />
+    <span *ngFor="let circle of circles">
+        <span class="circle-text"><a href="/view-circle/{{circle.id}}">{{circle.name}}</a></span>
+        <hr />
+    </span>
+    <div style="text-align: center" *ngIf="displayViewAll">
+        <a style="font-weight: bold" routerLink="/list-circles">View All</a>
+    </div>
+</div>

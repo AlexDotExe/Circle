@@ -21,7 +21,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
-import com.x.exception.FeedbackException;
+import com.x.exception.CircleException;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -40,7 +40,7 @@ public class JwtProvider {
             InputStream resourceAsStream = getClass().getResourceAsStream("/springblog.jks");
             keyStore.load(resourceAsStream, "password".toCharArray());
         } catch (KeyStoreException | CertificateException | NoSuchAlgorithmException | IOException e) {
-            throw new FeedbackException("Exception occurred while loading keystore" + e.getMessage());
+            throw new CircleException("Exception occurred while loading keystore" + e.getMessage());
         }
 
     }
@@ -68,7 +68,7 @@ public class JwtProvider {
         try {
             return (PrivateKey) keyStore.getKey("springblog", "password".toCharArray());
         } catch (KeyStoreException | NoSuchAlgorithmException | UnrecoverableKeyException e) {
-            throw new FeedbackException("Exception occured while retrieving public key from keystore" + e.getMessage());
+            throw new CircleException("Exception occured while retrieving public key from keystore" + e.getMessage());
         }
     }
 
@@ -81,7 +81,7 @@ public class JwtProvider {
         try {
             return keyStore.getCertificate("springblog").getPublicKey();
         } catch (KeyStoreException e) {
-            throw new FeedbackException("Exception occured while " +
+            throw new CircleException("Exception occured while " +
                     "retrieving public key from keystore");
         }
     }

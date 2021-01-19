@@ -6,7 +6,7 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.x.exception.FeedbackException;
+import com.x.exception.CircleException;
 import com.x.model.RefreshToken;
 import com.x.repository.RefreshTokenRepository;
 
@@ -29,7 +29,7 @@ public class RefreshTokenService {
 
     void validateRefreshToken(String token) {
         refreshTokenRepository.findByToken(token)
-                .orElseThrow(() -> new FeedbackException("Invalid refresh Token"));
+                .orElseThrow(() -> new CircleException("Invalid refresh Token"));
     }
 
     public void deleteRefreshToken(String token) {

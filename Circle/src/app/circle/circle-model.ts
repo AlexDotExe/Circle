@@ -1,0 +1,6 @@
+export class CircleModel {
+    id?: number;
+    name: string;
+    description: string;
+    postCount?: number;
+}
