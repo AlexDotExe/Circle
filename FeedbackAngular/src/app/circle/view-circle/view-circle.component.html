@@ -1,10 +1,16 @@
+<div class="body">
+  <div class="container">
+    <div class="row">
+      <hr />
+      <div class="col-md-9">
 <!-- Display Posts-->
+<span class="circle-text"><h1>{{getName()}}</h1> </span><br>
 <div class="row post" *ngFor="let post of posts">
     <app-vote-button [post]="post"></app-vote-button>
     <!-- Section to Display Post Information-->
     <div class="col-md-11">
       <span class="circle-info">
-        <span class="circle-text"><a class="posturl" routerLink="">{{post.circleName}} </a></span><br>
+   
         <span>Posted by <a class="username" routerLink="/user/{{post.userName}}">{{post.userName}}</a></span>
         <span> . {{post.duration}}</span>
       </span>
@@ -27,3 +33,11 @@
       </span>
     </div>
   </div>
+</div>
+<div class="col-md-3">
+  <app-side-bar></app-side-bar>
+  <app-circle-side-bar></app-circle-side-bar>
+</div>
+</div>
+</div>
+</div>

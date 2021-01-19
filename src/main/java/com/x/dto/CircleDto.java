@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class SubfeedDto {
+public class CircleDto {
     private Long id;
     private String name;
     private String description;

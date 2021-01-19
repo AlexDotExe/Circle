@@ -11,30 +11,30 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.x.dto.SubfeedDto;
-import com.x.service.SubfeedService;
+import com.x.dto.CircleDto;
+import com.x.service.CircleService;
 
 import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping("/api/subfeed")
 @AllArgsConstructor
-public class SubfeedController {
+public class CircleController {
 
-    private final SubfeedService SubfeedService;
+    private final CircleService CircleService;
 
     @GetMapping
-    public List<SubfeedDto> getAllSubfeeds() {
-        return SubfeedService.getAll();
+    public List<CircleDto> getAllCircles() {
+        return CircleService.getAll();
     }
 
     @GetMapping("/{id}")
-    public SubfeedDto getSubfeed(@PathVariable Long id) {
-        return SubfeedService.getSubfeed(id);
+    public CircleDto getCircle(@PathVariable Long id) {
+        return CircleService.getCircle(id);
     }
 
     @PostMapping
-    public SubfeedDto create(@RequestBody @Valid SubfeedDto SubfeedDto) {
-        return SubfeedService.save(SubfeedDto);
+    public CircleDto create(@RequestBody @Valid CircleDto CircleDto) {
+        return CircleService.save(CircleDto);
     }
 }

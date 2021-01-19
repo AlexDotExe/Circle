@@ -5,7 +5,7 @@ export class PostModel {
     description: string;
     voteCount: number;
     userName: string;
-    subfeedName: string;
+    circleName: string;
     commentCount: number;
     duration: string;
 }

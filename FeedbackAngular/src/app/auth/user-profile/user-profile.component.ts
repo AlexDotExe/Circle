@@ -17,9 +17,17 @@ export class UserProfileComponent implements OnInit {
   comments: CommentPayload[];
   postLength: number;
   commentLength: number;
+  comStyle:any;
+  com:boolean;
+  pos:boolean;
+  postStyle:any;
 
   constructor(private activatedRoute: ActivatedRoute, private postService: PostService,
     private commentService: CommentService) {
+    this.comStyle = {'display': 'none'};
+    this.postStyle = {'display': 'none'};
+    this.com =true;
+    this.pos =true;
     this.name = this.activatedRoute.snapshot.params.name;
 
     this.postService.getAllPostsByUser(this.name).subscribe(data => {
@@ -34,5 +42,15 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
   }
+showComment(){
+  if(this.com)this.comStyle = {'display': 'block'};
+  else this.comStyle = {'display' : 'none'};
+  this.com =!this.com;
+}
+showPost(){
+  if(this.pos)this.postStyle= {'display': 'block'};
+  else this.postStyle = {'display' : 'none'};
+  this.pos=!this.pos;
+}
 
 }

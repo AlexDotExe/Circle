@@ -17,7 +17,7 @@ import static javax.persistence.FetchType.LAZY;
 @NoArgsConstructor
 @Entity
 @Builder
-public class Subfeed {
+public class Circle {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "sfid_Sequence")
     @SequenceGenerator(name = "sfid_Sequence", sequenceName = "SFID_SEQ",allocationSize = 1)

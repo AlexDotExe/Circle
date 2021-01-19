@@ -13,10 +13,10 @@ import com.x.dto.PostResponse;
 import com.x.exception.FeedbackException;
 import com.x.mapper.PostMapper;
 import com.x.model.Post;
-import com.x.model.Subfeed;
+import com.x.model.Circle;
 import com.x.model.Userr;
 import com.x.repository.PostRepository;
-import com.x.repository.SubfeedRepository;
+import com.x.repository.CircleRepository;
 import com.x.repository.UserRepository;
 
 import lombok.AllArgsConstructor;
@@ -29,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 public class PostService {
 
     private final PostRepository postRepository;
-    private final SubfeedRepository subfeedRepository;
+    private final CircleRepository circleRepository;
     private final UserRepository userRepository;
     private final AuthService authService;
     private final PostMapper postMapper;
@@ -50,16 +50,16 @@ public class PostService {
     }
 
     public void save(PostRequest postRequest) {
-        Subfeed subfeed = subfeedRepository.findByName(postRequest.getSubfeedName())
-                .orElseThrow(() -> new FeedbackException(postRequest.getSubfeedName()));
-        postRepository.save(postMapper.map(postRequest, subfeed, authService.getCurrentUser()));
+        Circle circle = circleRepository.findByName(postRequest.getCircleName())
+                .orElseThrow(() -> new FeedbackException(postRequest.getCircleName()));
+        postRepository.save(postMapper.map(postRequest, circle, authService.getCurrentUser()));
     }
 
     @Transactional(readOnly = true)
-    public List<PostResponse> getPostsBySubfeed(Long subfeedId) {
-        Subfeed subfeed = subfeedRepository.findById(subfeedId)
-                .orElseThrow(() -> new FeedbackException(subfeedId.toString()));
-        List<Post> posts = postRepository.findAllBySubfeed(subfeed);
+    public List<PostResponse> getPostsByCircle(Long circleId) {
+        Circle circle = circleRepository.findById(circleId)
+                .orElseThrow(() -> new FeedbackException(circleId.toString()));
+        List<Post> posts = postRepository.findAllByCircle(circle);
         return posts.stream().map(postMapper::mapToDto).collect(toList());
     }
 

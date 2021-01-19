@@ -18,7 +18,7 @@ export class SideBarComponent implements OnInit {
   }
 
   goToCreateSubfeed() {
-    this.router.navigateByUrl('/create-subfeed');
+    this.router.navigateByUrl('/create-circle');
   }
 
 }

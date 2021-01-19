@@ -11,9 +11,9 @@
   
             <input type="text" class="form-control" [formControlName]="'url'" style="margin-top: 5px" placeholder="URL">
   
-            <select class="form-control" style="margin-top: 10px" [formControlName]="'subfeedName'">
-              <option value="" selected disabled>Select Subfeed</option>
-              <option *ngFor="let subfeed of subfeeds">{{subfeed.name}}</option>
+            <select class="form-control" style="margin-top: 10px" [formControlName]="'circleName'">
+              <option value="" selected disabled>Select Circle</option>
+              <option *ngFor="let circle of circles">{{circle.name}}</option>
             </select>
   
             <editor [formControlName]="'description'" apiKey = "8deayivqvc2bl1zdj85z3g4hfg4j2jzvbowph1h573uz5pgn" [init]="{

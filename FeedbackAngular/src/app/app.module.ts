@@ -15,15 +15,16 @@ import { HomeComponent } from './home/home.component';
 import { PostComponent } from './post/post.component';
 import { PostTileComponent } from './shared/post-tile/post-tile.component';
 import { SideBarComponent } from './shared/side-bar/side-bar.component';
-import { SubfeedSideBarComponent } from './shared/subfeed-side-bar/subfeed-side-bar.component';
+import { CircleSideBarComponent } from './shared/circle-side-bar/circle-side-bar.component';
 import { VoteButtonComponent } from './shared/vote-button/vote-button.component';
 import { CreatePostComponent } from './post/create-post/create-post.component';
-import { CreateSubfeedComponent } from './subfeed/create-subfeed/create-subfeed.component';
-import { ListSubfeedsComponent } from './subfeed/list-subfeeds/list-subfeeds.component';
+import { CreateCircleComponent } from './circle/create-circle/create-circle.component';
+import { ListCirclesComponent } from './circle/list-circle/list-circles.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { ViewPostComponent } from './post/view-post/view-post.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import{UserProfileComponent} from './auth/user-profile/user-profile.component';
+import { ViewCircleComponent } from './circle/view-circle/view-circle.component';
 
 @NgModule({
   declarations: [
@@ -35,13 +36,14 @@ import{UserProfileComponent} from './auth/user-profile/user-profile.component';
     PostComponent,
     PostTileComponent,
     SideBarComponent,
-    SubfeedSideBarComponent,
+    CircleSideBarComponent,
     VoteButtonComponent,
     CreatePostComponent,
-    CreateSubfeedComponent,
-    ListSubfeedsComponent,
+    CreateCircleComponent,
+    ListCirclesComponent,
     ViewPostComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    ViewCircleComponent
   ],
   imports: [
     BrowserModule,

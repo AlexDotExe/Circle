@@ -5,16 +5,16 @@
       You can check your post and comment history below.
     </div>
     <hr />
-    <div>
-      Your Posts:
-    </div>
-    <app-post-tile [posts]="posts"></app-post-tile>
+    <button (click) = "showPost()">
+      Your Posts: ...
+    </button>
+    <div class = "all" [ngStyle] = "postStyle"><app-post-tile [posts]="posts"></app-post-tile></div>
     <hr />
-    <div>
-      Your Comments:
-    </div>
+    <button (click) = "showComment()" >
+      Your Comments: ...
+    </button>
     <div *ngFor="let comment of comments">
-      <div class="comment">
+      <div class="comment" [ngStyle] = "comStyle">
         <div class="username">
           <a routerLink="/user/comment.username">{{comment.userName}}</a>
         </div>

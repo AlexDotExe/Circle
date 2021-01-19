@@ -1,6 +1,6 @@
 export class CreatePostPayload {
     postName: string;
-    subfeedName?: string;
+    circleName?: string;
     url?: string;
     description: string;
 }

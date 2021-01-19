@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListSubfeedsComponent } from './list-subfeeds.component';
+import { CircleSideBarComponent } from './circle-side-bar.component';
 
-describe('ListSubfeedsComponent', () => {
-  let component: ListSubfeedsComponent;
-  let fixture: ComponentFixture<ListSubfeedsComponent>;
+describe('CircleSideBarComponent', () => {
+  let component: CircleSideBarComponent;
+  let fixture: ComponentFixture<CircleSideBarComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ListSubfeedsComponent ]
+      declarations: [ CircleSideBarComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListSubfeedsComponent);
+    fixture = TestBed.createComponent(CircleSideBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

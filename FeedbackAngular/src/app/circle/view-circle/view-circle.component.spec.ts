@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VoteButtonComponent } from './vote-button.component';
+import { ViewCircleComponent } from './view-circle.component';
 
-describe('CircleVoteButtonComponent', () => {
-  let component: VoteButtonComponent;
-  let fixture: ComponentFixture<VoteButtonComponent>;
+describe('ViewCircleComponent', () => {
+  let component: ViewCircleComponent;
+  let fixture: ComponentFixture<ViewCircleComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ VoteButtonComponent ]
+      declarations: [ ViewCircleComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(VoteButtonComponent);
+    fixture = TestBed.createComponent(ViewCircleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

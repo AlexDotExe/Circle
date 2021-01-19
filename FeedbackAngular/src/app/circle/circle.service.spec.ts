@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SubfeedService } from './subfeed.service';
+import { CircleService } from './circle.service';
 
-describe('SubfeedService', () => {
-  let service: SubfeedService;
+describe('CircleService', () => {
+  let service: CircleService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SubfeedService);
+    service = TestBed.inject(CircleService);
   });
 
   it('should be created', () => {

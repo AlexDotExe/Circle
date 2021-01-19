@@ -62,6 +62,7 @@ export class VoteButtonComponent implements OnInit {
   }
 
   private updateVoteDetails() {
+    if(this.post != null)
     this.postService.getPost(this.post.id).subscribe(post => {
       this.post = post;
     });

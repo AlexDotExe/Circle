@@ -4,8 +4,10 @@ import { LoginRequestPayload } from './login-request.payload';
 import { AuthService } from '../shared/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import {HeaderComponent} from '../../header/header.component';
 
 @Component({
+  providers:[HeaderComponent],
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
@@ -18,7 +20,7 @@ export class LoginComponent implements OnInit {
   isError: boolean;
 
   constructor(private authService: AuthService, private activatedRoute: ActivatedRoute,
-    private router: Router, private toastr: ToastrService) {
+    private router: Router, private toastr: ToastrService, private head: HeaderComponent) {
     this.loginRequestPayload = {
       username: '',
       password: ''
@@ -48,8 +50,11 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginRequestPayload).subscribe(data => {
       if (data) {
         this.isError = false;
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('').then(() => {
+          window.location.reload();
+        })
         this.toastr.success('Login Successful');
+       
       } else {
         this.isError = true;
       }
