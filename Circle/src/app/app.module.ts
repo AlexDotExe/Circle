@@ -25,6 +25,8 @@ import { ViewPostComponent } from './post/view-post/view-post.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import{UserProfileComponent} from './auth/user-profile/user-profile.component';
 import { ViewCircleComponent } from './circle/view-circle/view-circle.component';
+import { FooterComponent } from './footer/footer.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { ViewCircleComponent } from './circle/view-circle/view-circle.component'
     ListCirclesComponent,
     ViewPostComponent,
     UserProfileComponent,
-    ViewCircleComponent
+    ViewCircleComponent,
+    FooterComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

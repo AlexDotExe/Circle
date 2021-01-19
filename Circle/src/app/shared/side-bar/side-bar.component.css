@@ -14,7 +14,7 @@
     margin-bottom: 10px;
 }
 
-.btnCreatePost, .btnCreateSubreddit{
+.btnCreatePost, .btnCreateCircle{
     background-color: #0079D3;
     border-color: #0079D3;
     color: aliceblue;
@@ -35,7 +35,7 @@
     height: 34px;
 }
 
-.btnCreateSubreddit{
+.btnCreateCircle{
     margin-top: 5px;
     color: #0079D3;
     background-color: transparent;

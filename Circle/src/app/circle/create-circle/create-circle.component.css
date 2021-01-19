@@ -20,9 +20,7 @@
     -ms-flex: 1;
     flex: 1;
   }
-  .container{
-    margin-top: 50px;
-}
+
   .btnCreateCircle {
     background-color: #0079D3;
     border-color: #0079D3;
