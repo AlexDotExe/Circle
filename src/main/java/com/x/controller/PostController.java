@@ -43,7 +43,7 @@ public class PostController {
         return status(HttpStatus.OK).body(postService.getPost(id));
     }
 
-    @GetMapping("by-subfeed/{id}")
+    @GetMapping("by-circle/{id}")
     public ResponseEntity<List<PostResponse>> getPostsByCircle(@PathVariable Long id) {
         return status(HttpStatus.OK).body(postService.getPostsByCircle(id));
     }

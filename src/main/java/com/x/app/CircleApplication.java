@@ -16,10 +16,10 @@ import com.x.config.SwaggerConfiguration;
 @ComponentScan("com.x")
 @EnableJpaRepositories("com.x.repository")
 @EntityScan("com.x.model")
-public class FeedBackApplication {
+public class CircleApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FeedBackApplication.class, args);
+		SpringApplication.run(CircleApplication.class, args);
 	}
 
 }
