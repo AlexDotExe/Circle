@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.x</groupId>
-	<artifactId>FeedBack</artifactId>
+	<artifactId>Circle</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>FeedBack</name>
+	<name>Circle</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -26,6 +26,11 @@
             <artifactId>springfox-swagger2</artifactId>
             <version>2.9.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok-mapstruct-binding</artifactId>
+            <version>0.2.0</version>
+</dependency>
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
@@ -170,6 +175,18 @@
                 <source>1.8</source> <!-- depending on your project -->
                 <target>1.8</target> <!-- depending on your project -->
                 <annotationProcessorPaths>
+                 <path>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok-mapstruct-binding</artifactId>
+                <version>0.2.0</version>
+            </path>
+                 <path>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.16</version>
+            </path>
+            <!-- This is needed when using Lombok 1.8.16 and above -->
+            
                     <path>
                         <groupId>org.mapstruct</groupId>
                         <artifactId>mapstruct-processor</artifactId>

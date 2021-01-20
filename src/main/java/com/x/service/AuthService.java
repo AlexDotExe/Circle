@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.x.config.AppConfig;
 import com.x.dto.AuthenticationResponse;
 import com.x.dto.LoginRequest;
 import com.x.dto.RefreshTokenRequest;
@@ -32,7 +33,8 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 @AllArgsConstructor
 @Transactional
 public class AuthService {
-
+	
+	private final AppConfig appConfig;
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
     private final VerificationTokenRepository verificationTokenRepository;
@@ -55,7 +57,7 @@ if(userRepository.findByEmail(user.getEmail()).isPresent()) throw new CircleExce
         mailService.sendMail(new NotificationEmail("Please Activate your Account",
                 user.getEmail(), "Thank you for signing up to Circle, " +
                 "please click on the below url to activate your account : " +
-                "http://localhost:8080/api/auth/accountVerification/" + token));
+                appConfig.getAppUrl() + "/api/auth/accountVerification/" + token));
     }
 
     @Transactional(readOnly = true)
