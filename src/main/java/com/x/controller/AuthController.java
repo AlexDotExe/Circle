@@ -20,7 +20,6 @@ import com.x.service.AuthService;
 import com.x.service.RefreshTokenService;
 
 import lombok.AllArgsConstructor;
-import lombok.extern.log4j.Log4j;
 
 @RestController
 @RequestMapping("/api/auth")
